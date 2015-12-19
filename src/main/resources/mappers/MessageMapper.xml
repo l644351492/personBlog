@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myblog.mapper.MessageMapper">
+
+    <resultMap type="Message" id="MessageResult">
+    <id property="mid" column="mid"/>
+    <result property="messagerNickname" column="messager_nickname"/>
+    <result property="messageContent" column="message_content"/>
+    <result property="messageTime" column="message_time"/>
+    </resultMap>
+    
+     <select id="getMessageList"
+        resultMap="MessageResult">
+        SELECT * FROM message
+    </select>
+
+    <insert id="insertMessage" useGeneratedKeys="true"
+    keyProperty="mid">
+     INSERT INTO message(messager_nickname, message_content, message_time)
+       VALUES(#{messagerNickname},#{messageContent},now())
+    </insert>
+    
+</mapper>

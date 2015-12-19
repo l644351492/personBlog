@@ -1,0 +1,25 @@
+.comment_ul {
+    list-style: none;
+}
+
+.comment_list {
+    margin-bottom: 10px;
+}
+
+.comment_user {
+    margin-top: 5px;
+    color: #777;
+    font-size: 75%;
+}
+
+.comment_content {
+    margin: 5px;
+    font-size: 90%;
+}
+
+.comment_fn {
+    padding: 5px;
+    padding-top: 0px;
+    color: #777;
+    font-size: 12px;
+}

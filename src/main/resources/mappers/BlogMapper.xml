@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myblog.mapper.BlogMapper">
+
+    <resultMap type="Blog" id="BlogResult">
+    <id property="bid" column="bid"/>
+    <result property="blogTitle" column="blog_title"/>
+    <result property="blogAuthorId" column="blog_author_id"/>
+    <result property="markdownContent" column="markdown_content"/>
+    <result property="blogContent" column="blog_content"/>
+    <result property="categoryId" column="category_id"/>
+    <result property="finishTime" column="finish_time"/>
+    <association property="author"
+            javaType="User"
+            column="blog_author_id"
+            select="com.myblog.mapper.UserMapper.getTargrtUserByUid" />
+    <association property="catogory"
+            javaType="Category"
+            column="category_id"
+            select="com.myblog.mapper.CategoryMapper.getCatogoryByCid" />     
+    </resultMap>
+    
+    <resultMap type="Blog" id="BlogAndCommentListResult" extends="BlogResult">
+    <collection property="commentList"
+            ofType="Comment"
+            javaType="List"
+            column="bid"
+            select="com.myblog.mapper.CommentMapper.getCommentListByTargetBlogId" />
+    </resultMap>
+    
+    
+     <select id="getBlogList"
+        resultMap="BlogResult">
+        SELECT * FROM blog
+    </select>
+    
+    <select id="getBlogAndCommentList"
+        resultMap="BlogAndCommentListResult">
+        SELECT * FROM blog WHERE bid = #{bid}
+    </select>
+    
+    
+    <select id="getBlogListByCategoryId"
+        resultMap="BlogResult">
+        SELECT * FROM blog WHERE category_id = #{cid}
+    </select>    
+    
+    <select id="selectBlogByBid"
+        resultMap="BlogResult">
+        SELECT * FROM blog WHERE bid = #{bid}
+    </select>
+    
+    <delete id="deleteBlogByBid">
+        DELETE FROM blog WHERE bid = #{bid}
+    </delete>
+    
+    
+    <insert id="insertBlog" useGeneratedKeys="true"
+    keyProperty="bid">
+     INSERT INTO blog(blog_title, blog_author_id, markdown_content, blog_content, category_id, finish_time)
+       VALUES(#{blogTitle},#{blogAuthorId},#{markdownContent},#{blogContent},#{categoryId},now())
+    </insert>
+    
+    <update id="updateBlogByBid">
+        UPDATE blog SET
+        blog_title = #{blogTitle},
+        markdown_content = #{markdownContent},
+        blog_content = #{blogContent},
+        category_id = #{categoryId}
+        WHERE bid = #{bid}
+    </update>
+    
+    
+    
+    
+
+</mapper>

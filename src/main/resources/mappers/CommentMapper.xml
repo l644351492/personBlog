@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myblog.mapper.CommentMapper">
+
+    <resultMap type="Comment" id="CommentResult">
+    <id property="cid" column="cid"/>
+    <result property="commentNickname" column="comment_nickname"/>
+    <result property="commentContent" column="comment_content"/>
+    <result property="commentTime" column="comment_time"/>
+    <result property="targetCommentId" column="target_comment_id"/>
+    <result property="targetBlogId" column="target_blog_id"/>  
+    <association property="targetComment"
+            javaType="Comment"
+            column="target_comment_id"
+            select="com.myblog.mapper.CommentMapper.getCommentByCid" />
+    </resultMap>
+    
+     <select id="getCommentListByTargetBlogId"
+        resultMap="CommentResult">
+        SELECT * FROM comment WHERE target_blog_id = #{blogId}
+    </select>
+    
+    <select id="getCommentByCid"
+        resultMap="CommentResult">
+        SELECT * FROM comment WHERE cid = #{cid}
+    </select>
+
+    <insert id="insertComment" useGeneratedKeys="true"
+    keyProperty="cid">
+     INSERT INTO comment(comment_nickname, comment_content, comment_time, target_comment_id, target_blog_id)
+       VALUES(#{commentNickname},#{commentContent},now(),#{targetCommentId},#{targetBlogId})
+    </insert>
+    
+      <delete id="deleteCommentListByTargrtBlogId">
+        DELETE FROM comment WHERE target_blog_id = #{bid}
+    </delete>
+    
+</mapper>

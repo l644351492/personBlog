@@ -1,0 +1,114 @@
+.zhuti{
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom:15px;
+    font-size:40px;
+    text-align: center;
+}
+.list{
+    margin-top:30px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+.shutiao{
+    background-image: url(../../assets/img/blue_dot.png);
+    background-repeat: repeat-y;
+    background-position: 0px 0%;
+    background-size: 0.5% auto;
+    padding-left: 35px;
+    margin-left: 5px;
+    padding-right:0px;
+}
+
+
+
+.date{
+    text-align:right;
+    padding: 5px;
+}
+.title{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.summary{
+    font-size:15px;
+    text-indent: 0px;
+    line-height: 25px;
+    font-weight:300px;
+}
+.summary p{
+    text-indent: 35px;
+}
+.summary img{
+    max-width: 100%;
+}
+
+#more{
+    margin-top:60px;
+    width:300px;
+}
+
+.tag{
+    float:right;
+    color:#1585CC;
+    font-size: 12px;
+    padding: 2px;
+}
+
+@media(max-width: 767px){
+    
+    .list{
+        margin-top:15px;
+    }
+    .shutiao{
+        background-size: 1% auto;
+    }
+}
+
+
+.title a, .title a:visited, .title a{
+    color:#272a30;
+}
+.title a:hover{
+    color:#666;
+}
+
+#title {
+    font-size: 26px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#info {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+#pinlunqu {
+    color: #0937E9;
+    padding-bottom: 10px;
+    border-bottom: thin solid #0937E9;
+}
+
+#no_comment {
+    color: #aaa;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.input-group {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.input-group {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
